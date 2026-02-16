@@ -5,7 +5,7 @@ This module provides functionality to classify speech into different categories
 such as formal, informal, narrative, persuasive, etc.
 """
 
-from typing import List, Dict, Tuple
+from typing import List, Dict, Tuple, Any
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
@@ -118,7 +118,7 @@ class SpeechClassifier:
             for class_name, prob in zip(self.classes_, probabilities)
         }
     
-    def evaluate(self, texts: List[str], labels: List[str]) -> Dict[str, any]:
+    def evaluate(self, texts: List[str], labels: List[str]) -> Dict[str, Any]:
         """
         Evaluate the classifier on test data.
         
