@@ -21,8 +21,9 @@ env/
 
 # Data — raw data is NOT versioned (too large)
 data/raw/
-./*/*.txt
-
+./data/*.txt
+./models/*.txt
+./submissions/*.txt
 # But DO track test file and keep/ markers
 !data/.gitkeep
 !submissions/results/scores.md
