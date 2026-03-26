@@ -21,7 +21,6 @@ env/
 
 # Data — raw data is NOT versioned (too large)
 data/raw/
-*.utf8
 *.txt
 
 # But DO track test file and keep/ markers
