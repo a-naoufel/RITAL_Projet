@@ -51,3 +51,4 @@ tqdm>=4.66.0
 # Uncomment if you use W&B or TensorBoard
 # wandb>=0.16.0
 # tensorboard>=2.15.0
+matplotlib>=3.7.0
