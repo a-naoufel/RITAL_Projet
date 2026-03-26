@@ -1,0 +1,21 @@
+=== Model 3 - fastText supervised ===
+lr=1.0  epoch=25  wordNgrams=2  dim=50
+
+5-fold CV  : 0.8405 +/- 0.0176
+Hold-out   : 0.8525  (80/20, seed=42)
+
+Confusion matrix (hold-out):
+  TN=165  FP=35
+  FN=24  TP=176
+
+              precision    recall  f1-score   support
+
+    Negative       0.87      0.82      0.85       200
+    Positive       0.83      0.88      0.86       200
+
+    accuracy                           0.85       400
+   macro avg       0.85      0.85      0.85       400
+weighted avg       0.85      0.85      0.85       400
+
+Figures    : lr_curve.png  confusion_matrix.png
+Time       : 264.7s

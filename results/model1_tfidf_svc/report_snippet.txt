@@ -1,0 +1,22 @@
+=== Model 1 - TF-IDF + LinearSVC ===
+Vectoriser : word, ngram=(1,2), sublinear_tf, min_df=2, max_df=0.95
+Classifier : LinearSVC  best C=4.0
+
+5-fold CV  : 0.8820 +/- 0.0318
+Hold-out   : 0.8925  (80/20, seed=42)
+
+Confusion matrix (hold-out):
+  TN=176  FP=24
+  FN=19  TP=181
+
+              precision    recall  f1-score   support
+
+    Negative       0.90      0.88      0.89       200
+    Positive       0.88      0.91      0.89       200
+
+    accuracy                           0.89       400
+   macro avg       0.89      0.89      0.89       400
+weighted avg       0.89      0.89      0.89       400
+
+Figures : tuning_curve.png  confusion_matrix.png
+Time    : 59.3s

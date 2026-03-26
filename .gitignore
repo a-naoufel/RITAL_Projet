@@ -20,8 +20,7 @@ env/
 *.ipynb
 
 # Data — raw data is NOT versioned (too large)
-data/raw/
-*.txt
+data/raw/*.txt
 
 # But DO track test file and keep/ markers
 !data/.gitkeep
