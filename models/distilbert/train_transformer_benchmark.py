@@ -170,7 +170,11 @@ def train_one_run(X, y, hf_name, lr, epochs, batch_size, seed, device):
     Xtr, Xva, ytr, yva = train_test_split(
         X, y, test_size=0.2, random_state=seed, stratify=y
     )
-    tok = AutoTokenizer.from_pretrained(hf_name, use_fast=False)
+    if "deberta" in hf_name.lower():
+        tok = AutoTokenizer.from_pretrained(hf_name, use_fast=False)
+    else:
+        tok = AutoTokenizer.from_pretrained(hf_name)
+        
     model = AutoModelForSequenceClassification.from_pretrained(
         hf_name, num_labels=2, ignore_mismatched_sizes=True
     ).to(device)
