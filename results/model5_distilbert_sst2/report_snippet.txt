@@ -1,0 +1,20 @@
+=== Model 5b — DistilBERT SST-2 (already sentiment-tuned) ===
+lr=3e-05  epochs=5
+
+Mean acc (3 seeds) : 0.8150 +/- 0.0106
+Per-seed              : [0.8225, 0.8225, 0.8]
+
+Confusion matrix (hold-out seed=42):
+  TN=148  FP=52
+  FN=27  TP=173
+
+              precision    recall  f1-score   support
+
+    Negative       0.85      0.74      0.79       200
+    Positive       0.77      0.86      0.81       200
+
+    accuracy                           0.80       400
+   macro avg       0.81      0.80      0.80       400
+weighted avg       0.81      0.80      0.80       400
+
+Time : 908.0s

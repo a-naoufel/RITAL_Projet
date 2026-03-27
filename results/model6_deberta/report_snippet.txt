@@ -1,0 +1,20 @@
+=== Model 6 — DeBERTa-v3-base ===
+lr=1e-05  epochs=2
+
+Mean acc (3 seeds) : 0.8908 +/- 0.0116
+Per-seed              : [0.895, 0.9025, 0.875]
+
+Confusion matrix (hold-out seed=42):
+  TN=169  FP=31
+  FN=15  TP=185
+
+              precision    recall  f1-score   support
+
+    Negative       0.92      0.84      0.88       200
+    Positive       0.86      0.93      0.89       200
+
+    accuracy                           0.89       400
+   macro avg       0.89      0.89      0.88       400
+weighted avg       0.89      0.89      0.88       400
+
+Time : 2377.9s
