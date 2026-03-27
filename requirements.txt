@@ -1,54 +1,98 @@
-# ── Core ML & NLP ─────────────────────────────────────────────────────────────
-scikit-learn>=1.3.0
-numpy>=1.24.0,<2.0.0
+# ══════════════════════════════════════════════════════════════════════════════
+# RITAL — Sentiment Classification Project
+# Full requirements — all 6 main models + appendix
+# ══════════════════════════════════════════════════════════════════════════════
+#
+# ── PyTorch — pick ONE block based on your CUDA driver ────────────────────────
+#
+# Check your driver first:
+#   nvidia-smi | head -3
+#
+# Then install the matching wheel — do NOT pip install from this file directly
+# for the torch line; use the --index-url flag instead:
+#
+#   CUDA 11.8  →  pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
+#   CUDA 12.1  →  pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+#   CUDA 12.4  →  pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124
+#   CPU only   →  pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+#
+# After installing torch separately, install the rest normally:
+#   pip install -r requirements.txt
+#
+# ── Core scientific stack ──────────────────────────────────────────────────────
+numpy>=1.24.0
+scipy>=1.11.0
 pandas>=2.0.0
+matplotlib>=3.7.0
+tqdm>=4.66.0
 
-# ── Classical NLP ─────────────────────────────────────────────────────────────
-# TF-IDF + LinearSVC pipeline (models/tfidf_svc, models/tfidf_ensemble)
-# → covered by scikit-learn above
+# ── Classical ML (Models 1, 2, NB-SVM baseline) ───────────────────────────────
+scikit-learn>=1.3.0
+joblib>=1.3.0
 
-# NB-SVM baseline (models/nbsvm)
-# → covered by scikit-learn above
+# ── fastText (Model 3) ────────────────────────────────────────────────────────
+# Official build from source is preferred (faster, full feature set):
+#   git clone https://github.com/facebookresearch/fastText
+#   cd fastText && pip install .
+#
+# Fallback pip wheel (slower but easier):
+fasttext-wheel>=0.9.2
 
-# ── fastText ──────────────────────────────────────────────────────────────────
-# models/fasttext — requires NumPy < 2 because fastText's Python wrapper
-# is not fully compatible with NumPy 2.x during predict()
-fasttext-wheel>=0.9.2        # pip-installable fastText build
-
-# ── Deep Learning / Transformers ──────────────────────────────────────────────
-torch>=2.1.0
+# ── HuggingFace ecosystem (Models 4, 5, 6, Appendix RoBERTa) ─────────────────
 transformers>=4.40.0
 datasets>=2.18.0
 accelerate>=0.28.0
 tokenizers>=0.15.0
+evaluate>=0.4.0
+huggingface-hub>=0.22.0
 
-# ── SetFit ────────────────────────────────────────────────────────────────────
-# models/setfit — to be completed
-scikit-learn>=1.3.0
-numpy>=1.24.0,<2.0.0
-pandas>=2.0.0
-fasttext>=0.9.3
-torch>=2.1.0
-transformers>=4.40.0
-datasets>=2.18.0
-accelerate>=0.28.0
-tokenizers>=0.15.0
+# ── SetFit (Model 4) ──────────────────────────────────────────────────────────
 setfit>=1.0.0
-evaluate>=0.4.0
-scipy>=1.11.0
-tqdm>=4.66.0
+sentence-transformers>=2.7.0
 
-# ── BiLSTM + GloVe ────────────────────────────────────────────────────────────
-# models/bilstm_glove — GloVe vectors loaded manually (not pip-installable)
-# Download: https://nlp.stanford.edu/projects/glove/
+# ── DeBERTa tokenizer dependency ──────────────────────────────────────────────
+sentencepiece>=0.1.99
+protobuf>=3.20.0
 
-# ── Evaluation & Utilities ────────────────────────────────────────────────────
-evaluate>=0.4.0
-scipy>=1.11.0
-tqdm>=4.66.0
+# ── Report / figures ──────────────────────────────────────────────────────────
+# matplotlib already listed above
+Pillow>=10.0.0          # image handling for saved figures
 
 # ── Optional: experiment tracking ─────────────────────────────────────────────
-# Uncomment if you use W&B or TensorBoard
 # wandb>=0.16.0
 # tensorboard>=2.15.0
-matplotlib>=3.7.0
+
+# ══════════════════════════════════════════════════════════════════════════════
+# INSTALL ORDER (avoids dependency conflicts)
+# ══════════════════════════════════════════════════════════════════════════════
+#
+# 1. Install torch for your CUDA version (see block above)
+#
+# 2. pip install -r requirements.txt
+#
+# 3. fastText from source if fasttext-wheel fails:
+#      git clone https://github.com/facebookresearch/fastText && cd fastText
+#      pip install .
+#
+# 4. GloVe vectors for BiLSTM (not pip-installable):
+#      wget https://nlp.stanford.edu/data/glove.6B.zip
+#      unzip glove.6B.zip -d data/glove/
+#
+# ══════════════════════════════════════════════════════════════════════════════
+# CUDA MISMATCH FIX (ppti-gpu machines)
+# ══════════════════════════════════════════════════════════════════════════════
+#
+# If nvidia-smi shows driver but torch.cuda.is_available() returns False:
+#
+#   Step 1 — check driver CUDA version:
+#     nvidia-smi | grep "CUDA Version"
+#
+#   Step 2 — uninstall current torch:
+#     pip uninstall torch torchvision torchaudio -y
+#
+#   Step 3 — reinstall matching wheel (example for CUDA 11.8):
+#     pip install torch --index-url https://download.pytorch.org/whl/cu118
+#
+#   Step 4 — verify:
+#     python3 -c "import torch; print(torch.cuda.is_available())"
+#
