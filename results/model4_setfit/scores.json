@@ -1,0 +1,29 @@
+{
+  "model": "SetFit \u2014 all-mpnet-base-v2",
+  "base_model": "sentence-transformers/all-mpnet-base-v2",
+  "few_shot_k": 8,
+  "few_shot_reps": 5,
+  "few_shot_accs": [
+    0.88,
+    0.5775,
+    0.685,
+    0.815,
+    0.6275
+  ],
+  "few_shot_mean": 0.717,
+  "few_shot_std": 0.11372554682216304,
+  "full_cv_folds": 5,
+  "full_cv_mean": 0.9125,
+  "full_cv_std": 0.011937336386313342,
+  "confusion_matrix_full": [
+    [
+      894,
+      106
+    ],
+    [
+      69,
+      931
+    ]
+  ],
+  "elapsed_s": 16649.0
+}
