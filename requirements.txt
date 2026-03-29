@@ -46,13 +46,21 @@ tokenizers>=0.15.0
 evaluate>=0.4.0
 huggingface-hub>=0.22.0
 
-# ── SetFit (Model 4) ──────────────────────────────────────────────────────────
+# ── SetFit (Model 5) ──────────────────────────────────────────────────────────
 setfit>=1.0.0
 sentence-transformers>=2.7.0
 
 # ── DeBERTa tokenizer dependency ──────────────────────────────────────────────
 sentencepiece>=0.1.99
 protobuf>=3.20.0
+
+# ── RNN / BiLSTM + GloVe (Model 4) ───────────────────────────────────────────
+# PyTorch (already required above) handles the RNN/BiLSTM layers.
+# GloVe vectors are NOT pip-installable — download separately:
+#   mkdir -p data/glove
+#   wget https://nlp.stanford.edu/data/glove.6B.zip -P data/glove/
+#   unzip data/glove/glove.6B.zip -d data/glove/
+# The model expects: data/glove/glove.6B.100d.txt
 
 # ── Report / figures ──────────────────────────────────────────────────────────
 # matplotlib already listed above
